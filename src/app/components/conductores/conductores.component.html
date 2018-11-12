@@ -1,0 +1,57 @@
+<div class="continer">
+
+  <div class="row">
+    <div class="col s12">
+      <ul class="collapsible">
+        <li class="active">
+          <div class="collapsible-header">
+            <i class="material-icons">person_add</i>Agregar Conductor</div>
+
+          <div class="collapsible-body card">
+            <div class="card-content">
+              <form #conductorForm="ngForm" (ngSubmit)="addConductor(conductorForm)">
+                <div class="row">
+
+                  <div class="input-field col s4">
+                    <input type="text" name="name" #name="ngModel" [(ngModel)]="conductoresService.selectedConductor.name" placeholder="Nombre del Conductor">
+                    <label>Nombre Completo del Conductor:</label>
+
+                  </div>
+
+                  <div class="input-field col s4">
+                    <input type="text" name="CC" #CC="ngModel" [(ngModel)]="conductoresService.selectedConductor.CC" placeholder="Número de Identificacion del Conductor">
+                    <label>Número de Identificación del Conductor:</label>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <input type="text" name="license" #license="ngModel" [(ngModel)]="conductoresService.selectedConductor.license" placeholder="Número de Licencia de Conducción">
+                    <label>Número de Licencia de Conducción:</label>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="card-action">
+                    <div class="input-field col s12">
+
+                      <button class="btn right"> Guardar </button>
+                      <button class="btn btn-default right"> Cancelar </button>
+
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+    </div>
+
+  </div>
+
+</div>
