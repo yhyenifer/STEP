@@ -8,9 +8,18 @@ vehiculoCtrl.getVehiculos = async (req,res) =>{
     res.json(vehiculos);
 };
 
+async function validar_placa(placa) {
+    return await Vehiculo.find({ plate: placa });
+
+}
+
 //crear vehiculo
-vehiculoCtrl.createVehiculo = async (req,res) =>{
-    
+vehiculoCtrl.createVehiculo = async (req, res) => {
+    console.log('guardar');
+    console.log(req.body);
+    const validacion = await validar_placa(req.body.plate);
+    if (validacion == 0) {
+        
     const vehiculo = new Vehiculo({
         
         plate: req.body.plate,
@@ -31,10 +40,16 @@ vehiculoCtrl.createVehiculo = async (req,res) =>{
         state: true
         
     });
-    console.log(vehiculo);
+
     await vehiculo.save();
-     res.json( { 'status': 'Vehiculo Guardado Exitosamente'});
-   };
+    res.json({
+        'status': 'Vehiculo Guardado Exitosamente', 'success': 'true'
+    });
+} else {
+    res.json({ 'status': 'Verificar la placa del vehiculo, la ingresada, ya existe', 'success': 'false' });
+
+}
+};
 
 // consultar por un vehiculo especifico
 vehiculoCtrl.getVehiculo = async (req,res) =>{

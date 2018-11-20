@@ -13,6 +13,7 @@ conductorCtrl.getConductores = async (req, res) => {
     // .catch(err => console.log(err));
 
 };
+
 async function validar_cedula(cedula) {
     return await Conductor.find({ CC: cedula });
 }
@@ -52,6 +53,7 @@ conductorCtrl.createConductor = async (req, res) => {
             state: true
 
         });
+        
         await conductor.save();
         res.json({
             'status': 'Conductor Guardado Exitosamente', 'success': 'true'

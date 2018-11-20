@@ -14,8 +14,16 @@ clienteCtrl.getClientes = async (req, res) => {
 
 };
 
+async function validar_numId(numeroIdentificacion) {
+    return await Cliente.find({ numero_identificacion: numeroIdentificacion });
+}
+
 // crear cliente
 clienteCtrl.createCliente = async (req, res) => {
+    console.log('guardar');
+    console.log(req.body);
+    const validacion = await validar_numId(req.body.numero_identificacion);
+    if (validacion == 0) {
     const cliente = new Cliente({
         nombre: req.body.nombre,
         apellido: req.body.apellido,
@@ -31,9 +39,15 @@ clienteCtrl.createCliente = async (req, res) => {
         state: true
     
     });
-    console.log(cliente);
+
     await cliente.save();
-    res.json({ 'status': 'Cliente Guardado Exitosamente' });
+    res.json({
+        'status': 'Cliente Guardado Exitosamente', 'success': 'true'
+    });
+ } else {
+    res.json({ 'status': 'Verificar la identificacion del cliente, la ingresada, ya existe', 'success': 'false' });
+
+   }
 };
 
 // consultar por un cliente especifico

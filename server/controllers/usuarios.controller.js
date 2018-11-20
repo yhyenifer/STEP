@@ -13,8 +13,16 @@ usuarioCtrl.getUsuarios = async (req, res) => {
 
 };
 
+async function validar_nickUsu(nickame) {
+    return await Usuario.find({ username: nickame });
+}
+
 // crear usuario
 usuarioCtrl.createUsuario = async (req, res) => {
+    console.log('guardar');
+    console.log(req.body);
+    const validacion = await validar_nickUsu(req.body.username);
+    if (validacion == 0) {
     const usuario = new Usuario({
         username:req.body.username,
         name:req.body.name,
@@ -23,9 +31,15 @@ usuarioCtrl.createUsuario = async (req, res) => {
         state: true
 
     });
-    console.log(usuario);
+        
     await usuario.save();
-    res.json({ 'status': 'Usuario Guardado Exitosamente' });
+    res.json({
+        'status': 'Usuario Guardado Exitosamente', 'success': 'true'
+    });
+} else {
+    res.json({ 'status': 'Verificar el nickname del usuario, el ingresado, ya existe', 'success': 'false' });
+
+}
 };
 
 // consultar por un usuario especifico
