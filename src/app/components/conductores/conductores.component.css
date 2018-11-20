@@ -1,5 +1,40 @@
-
-
-.collapsible-header{
+.collapsible-header {
     background-color: #ececec;
+}
+
+.darkgray {
+    background-color: darkgray;
+}
+
+.margin-separe {
+    margin-right: 4px;
+}
+
+.card-header {
+    background-color: #ececec;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.5;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-header i {
+    width: 2rem;
+    font-size: 1.6rem;
+    display: inline-block;
+    text-align: center;
+    margin-right: 1rem;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.mat-form-field {
+    display: block !important;
 }

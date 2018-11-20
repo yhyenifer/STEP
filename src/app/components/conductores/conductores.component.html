@@ -11,32 +11,42 @@
             <div class="card-content">
               <form #conductorForm="ngForm" (ngSubmit)="addConductor(conductorForm)">
                 <div class="row">
-
-                  <div class="input-field col s4">
-                    <input type="text" name="name" #name="ngModel" [(ngModel)]="conductoresService.selectedConductor.name" placeholder="Nombre del Conductor">
+                  <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="conductoresService.selectedConductor._id">
+                  <div class="input-field col s12 m6 l4">
+                    <input matInput type="text" name="name" #name="ngModel" [(ngModel)]="conductoresService.selectedConductor.name" placeholder="Escriba el Nombre">
                     <label>Nombre Completo del Conductor:</label>
-
                   </div>
 
-                  <div class="input-field col s4">
-                    <input type="text" name="CC" #CC="ngModel" [(ngModel)]="conductoresService.selectedConductor.CC" placeholder="Número de Identificacion del Conductor">
+                  <div class="input-field col s12 m6 l4">
+                    <input matInput type="text" name="CC" #CC="ngModel" [(ngModel)]="conductoresService.selectedConductor.CC" placeholder="Escriba el número de identificación">
                     <label>Número de Identificación del Conductor:</label>
-
                   </div>
-                  <div class="input-field col s4">
-                    <input type="text" name="license" #license="ngModel" [(ngModel)]="conductoresService.selectedConductor.license" placeholder="Número de Licencia de Conducción">
+
+                  <div class="input-field  col s12 m6 l4">
+                    <input matInput type="text" name="license" #license="ngModel" [(ngModel)]="conductoresService.selectedConductor.license"
+                      placeholder="Escriba el número de licencia">
                     <label>Número de Licencia de Conducción:</label>
                   </div>
 
+                  <!--  <input type="text" class="datepicker " name="license_expiration" #license_expiration="ngModel" [(ngModel)]="conductoresService.selectedConductor.license_expiration"
+                      placeholder="Seleccione">
+                      <label>Fecha Expiración Licencia:</label>
+ -->
+                  <div class="col s12 m6 l4">
+                    <mat-form-field>
+                      <input matInput class="example-full-width" [matDatepicker]="picker" name="license_expiration" #license_expiration="ngModel"
+                        [(ngModel)]="conductoresService.selectedConductor.license_expiration" placeholder="Fecha de Expiración Licencia">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
                 </div>
 
                 <div class="row">
                   <div class="card-action">
-                    <div class="input-field col s12">
-
-                      <button class="btn right"> Guardar </button>
-                      <button class="btn btn-default right"> Cancelar </button>
-
+                    <div class="input-field col col s12 ">
+                      <button class="btn btn-default right darkgray " (click)="resetForm(conductorForm)"> Cancelar </button>
+                      <button class="btn right waves-effect black margin-separe"> Guardar </button>
                     </div>
                   </div>
                 </div>
@@ -50,8 +60,59 @@
   </div>
   <div class="row">
     <div class="col s12">
+      <div class="card">
+        <div class="card-header">
+          <i class="material-icons">people</i>Listado de Conductores
+        </div>
+        <div class="card-conten">
+          <table #dataTable ng="dataTable" class="display" style="width: 90%; margin: 0px 26px;">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Identificación</th>
+                <th>Num. Licencia</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let conductor of conductoresService.conductores">
+                <td>{{conductor.name}}</td>
+                <td>{{conductor.CC}}</td>
+                <td>{{conductor.license}}</td>
+                <td>
+                  <button class="btn black margin-separe" (click)="editConductor(conductor)" type="button">
+                    <i class="material-icons">edit</i>
+                  </button>
+                  <button class="btn darkgray " type="button" (click)="deleteConductor(conductor._id)">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
   </div>
 
 </div>
+
+<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
+
+<!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+<!-- Position Column -->
+
+<!-- <ng-container matColumnDef="Nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table> -->

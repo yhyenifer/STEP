@@ -1,12 +1,10 @@
-
-
-.container-margin{
+.container-margin {
     margin: 9px;
 }
 
-.title{
+.title {
     position: absolute;
-    color: #217423 ;
+    color: #217423;
     display: inline-block;
     font-size: 22px;
     padding: 0;

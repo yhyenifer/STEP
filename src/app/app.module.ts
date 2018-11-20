@@ -48,12 +48,21 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { DataTablesModule } from 'angular-datatables';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+
+
+import { app_routing } from './app.routes';
+
 
 @NgModule({
 
   declarations: [
     AppComponent,
-    ConductoresComponent
+    ConductoresComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +109,9 @@ import {
     MatTooltipModule,
     MatTreeModule,
     ScrollingModule,
+    DataTablesModule,
+    app_routing
+
   ],
   providers: [],
   bootstrap: [AppComponent]
