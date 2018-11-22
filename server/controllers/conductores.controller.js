@@ -14,14 +14,12 @@ conductorCtrl.getConductores = async (req, res) => {
 
 };
 async function validar_cedula(cedula) {
-    return await Conductor.find({ CC: cedula });
+    return await Conductor.find({ CC: cedula, state: 'true' });
 }
 
 
 // crear conductor
 conductorCtrl.createConductor = async (req, res) => {
-    console.log('guardar');
-    console.log(req.body);
     const validacion = await validar_cedula(req.body.CC);
     if (validacion == 0) {
         const conductor = new Conductor({
@@ -54,10 +52,10 @@ conductorCtrl.createConductor = async (req, res) => {
         });
         await conductor.save();
         res.json({
-            'status': 'Conductor Guardado Exitosamente', 'success': 'true'
+            status: 'Conductor Guardado Exitosamente', success: 'true'
         });
     } else {
-        res.json({ 'status': 'Verificar la cédula del conductor, la ingresada, ya existe', 'success': 'false' });
+        res.json({ status: 'Verificar la cédula del conductor, la ingresada, ya existe', success: 'false' });
 
     }
 };
@@ -102,7 +100,7 @@ conductorCtrl.updateConductor = async (req, res) => {
         state: true
     }
     await Conductor.findByIdAndUpdate(id, { $set: newConductor }, { new: true });
-    res.json({ status: 'Conductor Actualizado Exitosamente' });
+    res.json({ status: 'Conductor Actualizado Exitosamente', success: 'true' });
 };
 
 // Eliminar un conductor especifico
@@ -113,7 +111,7 @@ conductorCtrl.deleteConductor = async (req, res) => {
         state: req.body.state
     }
     await Conductor.findByIdAndUpdate(id, { $set: newState }, { new: true });
-    res.json({ status: 'Conductor Eliminado Exitosamente' });
+    res.json({ status: 'Conductor Eliminado Exitosamente', success: 'true' });
 };
 
 
