@@ -3,11 +3,11 @@ const {Schema}= mongoose;
 
 const VehiculoSchema = new Schema({
     plate: {type: String, required: true},//Numero de placa
-    //model: {type: String, required: true},//Marca
+    model: {type: String, required: true},//Marca
     year: {type: Number, required: true}, // Año Ejemplo: 2003
     //lateral: {type: String, required: true}, // Numero de lateral
     //class: {type: String}, // Camioneta doble cabina
-    passengers: {type: Number, required: true}, //Numero de Pasajeros
+    //passengers: {type: Number, required: true}, //Numero de Pasajeros
     //operation_card: {type: String , required: true}, //Tarjeta de Operacion 
     //exp_to: {type: Date, required: true},//Fecha de Expiracion (Año/Mes/Dia)
     //exp_soat: {type: Date, required: true},//Fecha de Expiracion Soat (Año/Mes/Dia)
