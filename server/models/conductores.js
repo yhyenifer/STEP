@@ -23,8 +23,8 @@ const ConductorSchema = new Schema({
     first_aid_expiration: { type: Date }, // primeros auxilios ok
     first_answer_expiration: { type: Date }, // fecha de primero respondiente ok
     senses_expiration: { type: Date }, // fecha de los 5 sentidos de la conduccion ok
-    // car_security_expiration: {type: Date}, // fehcha de la seguridad activa y pasiva del vehiculo ok
-    // road_security_expiration: {type: Date}, // fecha seguridad vial ok
+    car_security_expiration: { type: Date }, // fehcha de la seguridad activa y pasiva del vehiculo ok
+    road_security_expiration: { type: Date }, // fecha seguridad vial ok
 
     state: { type: Boolean, default: true }
 
