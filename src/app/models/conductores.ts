@@ -14,4 +14,26 @@ export class Conductores {
     CC: string;
     license: string;
     license_expiration: Date;
+    health_expiration: Date;
+    drug_expiration: Date;
+    simit_expiration: Date;
+    health_exam_expiration: Date;
+    active: Boolean = true;
+    internal: Boolean = true;
+    driving_exam_expiration: Date;
+    automotive_law_expiration: Date;
+    transit_law_expiration: Date;
+    law_tips_expiration: Date;
+    accident_expiration: Date;
+    driving_methods_expiration: Date;
+    defensive_expiration: Date;
+    distractions_expiration: Date;
+    first_aid_expiration: Date;
+    first_answer_expiration: Date;
+    senses_expiration: Date;
+    car_security_expiration: Date;
+    road_security_expiration: Date;
+
+
+
 }

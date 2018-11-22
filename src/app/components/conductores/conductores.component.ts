@@ -23,11 +23,14 @@ declare var M: any;
 export class ConductoresComponent implements OnInit {
   displayedColumns: string[] = ['Nombre', 'Identificación', 'Num. Licencia', 'Opciones'];
   dataSource = this.conductoresService.conductores;
+  color = 'black';
+  checked = true;
+  disabled = false;
   @ViewChild('dataTable') table: ElementRef;
 
-  dataTable: any;
-  dtOption: any;
-  constructor(private conductoresService: ConductoresService) { }
+  constructor(private conductoresService: ConductoresService) {
+
+  }
 
   ngOnInit() {
     M.AutoInit(); //inicia los componentes de materilize
@@ -42,21 +45,31 @@ export class ConductoresComponent implements OnInit {
     if (form.value._id) { // si existe el id, actualizamos
       this.conductoresService.updateConductor(form.value)
         .subscribe(res => {
-          this.resetForm(form);
-          M.toast({ html: "Conductor Actualizado Exitosamente" });
-          this.getConductores();
+          if (res.success == 'true') {
+            this.resetForm(form);
+            this.getConductores();
+          }
+          M.toast({ html: res.status });
+
         });
 
     } else {
       this.conductoresService.addConductor(form.value)
         .subscribe(res => {
-          this.resetForm(form);
-          M.toast({ html: "Conductor Creado Exitosamente" });
-          this.getConductores();
+          if (res.success == 'true') {
+            this.resetForm(form);
+            this.getConductores();
+          }
+          M.toast({ html: res.status });
+
         })
     }
 
   };
+  // funcion que permite igualar CC con licencia
+  onBlur() {
+    this.conductoresService.selectedConductor.license = this.conductoresService.selectedConductor.CC;
+  }
   // limpiar campos de pantalla
   resetForm(form?: NgForm) {
     if (form) {
@@ -82,8 +95,11 @@ export class ConductoresComponent implements OnInit {
   deleteConductor(id: String, state: String) {
     this.conductoresService.deleteConductor(id, state)
       .subscribe(res => {
-        M.toast({ html: "Conductor Eliminado Exitosamente" });
-        this.getConductores();
+        if (res.success == 'true') {
+          this.getConductores();
+        }
+        M.toast({ html: res.status });
+
       });
   }
 }

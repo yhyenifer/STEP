@@ -38,3 +38,32 @@
 .mat-form-field {
     display: block !important;
 }
+
+.tamaño-letra {
+    font-size: 15px;
+}
+
+.tamaño-letra-19 {
+    font-size: 19px;
+}
+
+.example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.example-margin {
+    font-size: 23px !important;
+}
+
+.mat-slide-toggle-label {
+    font-size: 23px !important;
+}
+
+.description {
+    margin-left: 30% !important;
+    font-weight: 500 !important;
+    color: #727d84 !important;
+}
